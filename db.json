@@ -1,0 +1,42 @@
+{
+  "posts": [],
+  "signupUsers": [
+    {
+      "email": "globoinstitute@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "signupStudents": [
+    {
+      "id": "1",
+      "name": "suraj",
+      "email": "abc@gmail.com",
+      "password": "123456",
+      "mobile": "9876544"
+    },
+    {
+      "id": "a3SRA3r",
+      "fullname": "shubham",
+      "email": "shubham123@gmail.com",
+      "password": "123456",
+      "mobile": 9876543210
+    }
+    {
+      "id": "FPtbn0q",
+      "fullname": "kaushar",
+      "email": "kaushar@gmail.com",
+      "password": "123456",
+      "mobile": 987765
+    },
+    {
+      "id": "WjdULCt",
+      "fullname": "shubham srivastav",
+      "email": "shubhamsri@gmail.com",
+      "password": "shubham1234",
+      "mobile": 9878787877
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

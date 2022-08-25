@@ -1,0 +1,77 @@
+<!--new code-->
+<div class="back" style="background-color: #E6E6FA">
+
+  <br />
+  <br />
+  <div class="container" style=" width: 80vw; margin-left : 25vw;">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card" style="background-color:lightpink">
+          <div class="text-center" style="background-color: yellow ">
+            <h1>SignUp</h1>
+            <h6>RegisterForm</h6>
+
+          </div>
+          <form style="margin: auto; width: 450px;">
+
+            <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+              <div class="mb-3">
+                <label for="exampleInputfullname" class="form-label">Full Name</label>
+                <input formControlName="fullname" type="text" class="form-control" id="exampleInputfullName" placeholder="Enter Full Name">
+                <span class="text-danger" *ngIf="signupForm.controls['fullname'].dirty && signupForm.hasError('required', 'fullname')">Name is required</span>
+
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email">
+                <span class="text-danger" *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')">Email is required</span>
+
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+
+
+
+              <div class="mb-3">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                <span class="text-danger font-weight-bold"
+                      *ngIf="(signupForm.get('password').touched || !signupForm.get('password').pristine) && signupForm.get('password').errors?.required">
+                  **Password is required
+                </span>
+                <span class="text-danger font-weight-bold"
+                      *ngIf="(signupForm.get('password').touched || !signupForm.get('password').pristine) && signupForm.get('password').errors?.invalidPassword">
+                  **Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                  letter and 1 number
+                </span>
+              </div>
+         
+
+
+
+              <!--<div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+                <span class="text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')">Password is required</span>
+
+              </div>-->
+
+              <div class="mb-3">
+                <label for="exampleInputmobile" class="form-label">Mobile Number</label>
+                <input formControlName="mobile" type="number" class="form-control" id="exampleInputmobile" placeholder="Enter Mobile Number">
+                <span class="text-danger" *ngIf="signupForm.controls['mobile'].dirty && signupForm.hasError('required', 'mobile')">Mobile No is required</span>
+
+              </div>
+              <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary">SignUp</button>
+
+            </form>
+
+            <a routerLink="/studentlogin">Allready Registered? Click To Login</a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /> <br /> <br /> <br />
+</div>

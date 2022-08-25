@@ -1,0 +1,218 @@
+<div style="background-color: azure">
+  <br />
+  <div style="background-color: #E6E6FA; color: black">
+    <a [routerLink]="['/profile']">View My Data</a>
+  </div>
+  <br />
+
+
+
+
+  <div class="container">
+
+
+
+    <br />
+
+    <div class="button">
+      <button routerLink="/studentlogin" class="btn btn-warning">LogOut</button>
+    </div>
+
+    <br />
+
+    <br />
+    <br />
+    <h2 style="background-color: #E6E6FA">LECTURE TIME TABLE</h2>
+    <div class="row">
+      <h1 *ngIf="allData.length === 0">No Data Available</h1>
+      <div class=" card col-4 p-4" *ngFor="let lecture of allData">
+        <div class="card" style="width: 18rem;">
+          <img [src]="lecture.image" class="card-img-top" height="150" width="25" alt="...">
+          <div class="card-body">
+            <a [title]="lecture.lectureName + ' details'" [routerLink]="['/lects', lecture.id]">
+              {{ lecture.lectureName }}
+            </a>
+            <h5 class="card-title">{{ lecture.facultyName}} - {{ lecture.time}}</h5>
+            <p class="card-text">{{ lecture.description}}</p>
+            <!--<input type="button" class="form-control" id="btnDel" value="Delete"
+                   ngClass="btn btn-danger btn-sm"
+                   (click)="deleteData(lecture)" />
+            <input type="button" class="form-control" id="btnEdit" value="Edit" ngClass="btn btn-primary btn-sm"
+                   data-bs-toggle="modal" data-bs-target="#editModal" (click)="editData(lecture)" />-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th style="width:50px">&nbsp; </th>
+        <th style="width:50px">&nbsp; </th>
+      </tr>
+    </thead>
+    <tbody>
+      <h1 *ngIf="allData.length === 0">No Data Available</h1>
+      <tr *ngFor="let movie of allData">
+        <td>{{ movie.id}}</td>
+        <td>{{ movie.name}}</td>
+        <td>{{ movie.price}}</td>
+        <td>{{ movie.description}}</td>
+        <td>{{ movie.image}}</td>
+        <td>
+          <input type="button" class="form-control" id="btnDel" value="Delete"
+                 ngClass="btn btn-danger btn-sm"
+                 (click)="deleteData(movie)" />
+        </td>
+        <td>
+          <input type="button" class="form-control" id="btnEdit" value="Edit" ngClass="btn btn-primary btn-sm"
+                 data-bs-toggle="modal" data-bs-target="#editModal" (click)="editData(movie)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>-->
+  <!-- Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Lecture</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="lectureid" class="form-label">Lecture ID</label>
+              <input type="number" formControlName="id" class="form-control" id="lectureid">
+            </div>
+            <div class="mb-3">
+              <label for="lectureName" class="form-label">Lecture Name</label>
+              <input type="text" formControlName="lectureName" class="form-control" id="lectureName">
+            </div>
+            <div class="mb-3">
+              <label for="facultyName" class="form-label">Faculty Name</label>
+              <input type="text" formControlName="facultyName" class="form-control" id="facultyName">
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
+              <input type="text" formControlName="time" class="form-control" id="time">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" formControlName="description" class="form-control" id="description">
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image</label>
+              <input type="text" formControlName="image" class="form-control" id="image">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" (click)="addMovie()">Add Lecture</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Lecture</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="lectureid" class="form-label">Lecture ID</label>
+              <input type="number" formControlName="id" class="form-control" id="lectureid">
+            </div>
+            <div class="mb-3">
+              <label for="lectureName" class="form-label">Lecture Name</label>
+              <input type="text" formControlName="lectureName" class="form-control" id="lectureName">
+            </div>
+            <div class="mb-3">
+              <label for="facultyName" class="form-label">Faculty Name</label>
+              <input type="text" formControlName="facultyName" class="form-control" id="facultyName">
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
+              <input type="text" formControlName="time" class="form-control" id="time">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" formControlName="description" class="form-control" id="description">
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image</label>
+              <input type="text" formControlName="image" class="form-control" id="image">
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--<iframe src="demo_iframe.htm" name="iframe_a" height="200px" width="100%" title="Iframe Example"></iframe>
+
+  <p><a [routerLink]="['/chat']" target="iframe_a">Chat Box</a></p>-->
+
+
+
+
+
+  <br />
+  <br />
+
+
+  <h1 style="color: darkblue; background-color: #E6E6FA">ONLINE TEST</h1>
+  <br />
+
+  <div class="container">
+
+    <div class="instructions">
+      <ol>
+        <h3>Please read the below points carefully.</h3>
+        <li>Maximum score: 150 points</li>
+        <li>10 marks will be awarded for each question</li>
+        <li>Zero marks will be awarded if not attempted</li>
+        <li>There is no negative marking</li>
+        <li>There are total 15 questions</li>
+
+      </ol>
+
+    </div>
+    <div>
+      <h2 class="bg-light text-align-center">Click on start test to begin.</h2>
+    </div>
+    <input class="start" type="button" value="Start Test" (click)="startTestEventHandler();">
+  </div>
+  <br />
+  <br />
+  <br />
+  <br /><br />
+
+
+  <!--<h2 style="color: darkblue; background-color: #E6E6FA" >Chat Box</h2>
+
+  <iframe src="http://localhost:4200/chat" height="200" width="400" title="iframe example"></iframe>-->
+
+  <br />
+  <br />
+
+
+</div>

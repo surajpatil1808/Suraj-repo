@@ -1,0 +1,13 @@
+.start:hover{
+    color: green;
+    background-color: rgb(214, 245, 214);
+}
+input.right {
+  float: right;
+}
+.button {
+  float: right;
+  background-color: lavender;
+}
+
+

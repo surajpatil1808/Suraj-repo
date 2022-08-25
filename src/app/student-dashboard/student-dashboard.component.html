@@ -1,0 +1,183 @@
+<div style="background-color: lightgoldenrodyellow">
+  <br />
+  <br />
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+    Add students
+  </button>
+  <br />
+  <br />
+  <!--<table class="table table-hover">-->
+  <table id="students">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>STUDENT NAME</th>
+        <th>ROLL</th>
+        <th>CLASS</th>
+
+        <th>SECTION</th>
+        <th>YEAR</th>
+        <th>GENDER</th>
+        <th>ADDRESS</th>
+        <th>STREAM</th>
+
+
+        <th style="width:50px">&nbsp; </th>
+        <th style="width:50px">&nbsp; </th>
+      </tr>
+    </thead>
+    <tbody>
+      <h1 *ngIf="allData.length === 0">No Data Available</h1>
+      <tr *ngFor="let student of allData">
+        <td>{{ student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{ student.roll}}</td>
+        <td>{{ student.class}}</td>
+
+        <td>{{student.section}}</td>
+        <td>{{student.year}}</td>
+        <td>{{student.gender}}</td>
+        <td>{{student.address}}</td>
+        <td>{{student.guardian}}</td>
+
+
+        <td>
+          <input type="button" class="form-control" id="btnDel" value="Delete"
+                 ngClass="btn btn-danger btn-sm"
+                 (click)="deleteDa(student)" />
+        </td>
+        <td>
+          <input type="button" class="form-control" id="btnEdit" value="Edit" ngClass="btn btn-primary btn-sm"
+                 data-bs-toggle="modal" data-bs-target="#editModal" (click)="editDa(student)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--Modal-->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Students</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="id" class="form-label">Student ID</label>
+              <input type="number" formControlName="id" class="form-control" id="id">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">StudentName</label>
+              <input type="text" formControlName="name" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+              <label for="roll" class="form-label">StudentRollNo</label>
+              <input type="number" formControlName="roll" class="form-control" id="roll">
+            </div>
+            <div class="mb-3">
+              <label for="class" class="form-label">SudentClass</label>
+              <input type="number" formControlName="class" class="form-control" id="class">
+            </div>
+
+
+
+
+            <div class="mb-3">
+              <label for="section" class="form-label">Section</label>
+              <input type="text" formControlName="section" class="form-control" id="section">
+            </div>
+            <div class="mb-3">
+              <label for="year" class="form-label">Academic Year</label>
+              <input type="number" formControlName="year" class="form-control" id="year">
+            </div>
+            <div class="mb-3">
+              <label for="gender" class="form-label">Gender</label>
+              <input type="text" formControlName="gender" class="form-control" id="gender">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" formControlName="address" class="form-control" id="address">
+            </div>
+            <div class="mb-3">
+              <label for="guardian" class="form-label">stream</label>
+              <input type="text" formControlName="guardian" class="form-control" id="guardian">
+            </div>
+
+
+
+
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" (click)="addCar()" data-bs-dismiss="modal">Add Student</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal-->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Student Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="id" class="form-label">Student ID</label>
+              <input type="number" formControlName="id" class="form-control" id="id">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">StudentName</label>
+              <input type="text" formControlName="name" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+              <label for="roll" class="form-label">StudentRollNo</label>
+              <input type="number" formControlName="roll" class="form-control" id="roll">
+            </div>
+            <div class="mb-3">
+              <label for="class" class="form-label">StudentClass</label>
+              <input type="number" formControlName="class" class="form-control" id="class">
+            </div>
+
+
+            <div class="mb-3">
+              <label for="section" class="form-label">Section</label>
+              <input type="text" formControlName="section" class="form-control" id="section">
+            </div>
+            <div class="mb-3">
+              <label for="year" class="form-label">Academic Year</label>
+              <input type="number" formControlName="year" class="form-control" id="year">
+            </div>
+            <div class="mb-3">
+              <label for="gender" class="form-label">Gender</label>
+              <input type="text" formControlName="gender" class="form-control" id="gender">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" formControlName="address" class="form-control" id="address">
+            </div>
+            <div class="mb-3">
+              <label for="guardian" class="form-label">Stream</label>
+              <input type="text" formControlName="guardian" class="form-control" id="guardian">
+            </div>
+
+
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" (click)="updateDa()" data-bs-dismiss="modal">Update Sudent Data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>

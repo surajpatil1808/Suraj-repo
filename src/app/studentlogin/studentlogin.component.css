@@ -1,0 +1,10 @@
+lable{
+    padding:4px;
+}
+h1,h6{
+    color:aliceblue;
+}
+.back {
+  /* background-color: rgb(221, 251, 252); */
+  background-image: url('https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg');
+}
